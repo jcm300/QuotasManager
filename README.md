@@ -10,3 +10,5 @@ Features:
 - Add new members;
 - Pay quotas;
 - Change data of members.
+
+I'm using Netbeans to be more easy to build app interfaces. 
