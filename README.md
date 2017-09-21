@@ -1,4 +1,4 @@
-# QuotasCesium
+# QuotasManager
 
 Micro-work for Software Systems of Development at Minho University.
 
