@@ -11,4 +11,4 @@ Features:
 - Pay quotas;
 - Change data of members.
 
-I'm using Netbeans to be more easy to build app interfaces. 
+I'm using Netbeans to be more easy to build app interfaces.

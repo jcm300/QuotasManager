@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package quotascesium;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.StringBuilder;
-
 /**
- *
  * @author José Martins
  */
+
+package quotasmanager;
+
+import java.util.TreeMap;
+import java.util.Map;
+import java.lang.StringBuilder;
+import java.time.LocalDate;
+
 public class Aluno  {
     
     //instance variavels
@@ -21,7 +17,7 @@ public class Aluno  {
     private String course;
     private int year;
     private String adress;
-    private HashMap<String,Double> quotas;
+    private TreeMap<LocalDate,Double> quotas;
     
     //constructors
     public Aluno(){
@@ -30,43 +26,63 @@ public class Aluno  {
         this.course="";
         this.year=0;
         this.adress="";
-        this.quotas=new HashMap<String,Double>();
+        this.quotas=new TreeMap<LocalDate,Double>();
     }
-    public Aluno(String n, int num, String c, int y, String a, HashMap<String,Double> q){
+    public Aluno(String n, int num, String c, int y, String a, TreeMap<LocalDate,Double> q){
         this.name=n;
         this.number=num;
         this.course=c;
         this.year=y;
         this.adress=a;
-        this.quotas= new HashMap<String,Double>();
-        for(HashMap.Entry<String,Double> d : q.entrySet()){
+        this.quotas= new TreeMap<LocalDate,Double>();
+        for(Map.Entry<LocalDate,Double> d : q.entrySet()){
             this.quotas.put(d.getKey(),d.getValue());
         }
     }
     
     //gets
-    public String getName() {return this.name;}
-    public int getNumber() {return this.number;}
-    public String getCourse() {return this.course;}
-    public int getYear() {return this.year;}
-    public String getAdress() {return this.adress;}
-    public Map<String,Double> getQuotas() {
-        HashMap<String,Double> r = new HashMap<String,Double>();
-        for(HashMap.Entry<String,Double> d : this.quotas.entrySet()){
+    public String getName() {
+        return this.name;
+    }
+    public int getNumber() {
+        return this.number;
+    }
+    public String getCourse() {
+        return this.course;
+    }
+    public int getYear() {
+        return this.year;
+    }
+    public String getAdress() {
+        return this.adress;
+    }
+    public Map<LocalDate,Double> getQuotas() {
+        TreeMap<LocalDate,Double> r = new TreeMap<LocalDate,Double>();
+        for(Map.Entry<LocalDate,Double> d : this.quotas.entrySet()){
             r.put(d.getKey(),d.getValue());
         }
         return r;
     }
     
     //sets
-    public void setName(String n) {this.name=n;}
-    public void setNumber(int num) {this.number=num;}
-    public void setCourse(String c) {this.course=c;}
-    public void setYear(int y) {this.year=y;}
-    public void setAdress(String a) {this.adress=a;}
-    public void setQuotas(HashMap<String,Double> q) {
-        this.quotas = new HashMap<String,Double>();
-        for(HashMap.Entry<String,Double> d : q.entrySet()){
+    public void setName(String n) {
+        this.name=n;
+    }
+    public void setNumber(int num) {
+        this.number=num;
+    }
+    public void setCourse(String c) {
+        this.course=c;
+    }
+    public void setYear(int y) {
+        this.year=y;
+    }
+    public void setAdress(String a) {
+        this.adress=a;
+    }
+    public void setQuotas(TreeMap<LocalDate,Double> q) {
+        this.quotas = new TreeMap<LocalDate,Double>();
+        for(Map.Entry<LocalDate,Double> d : q.entrySet()){
             this.quotas.put(d.getKey(),d.getValue());
         }
     }
@@ -113,5 +129,11 @@ public class Aluno  {
     //compareTo
     public int compareTo(Aluno a) {
         return this.name.compareTo(a.getName());
+    }
+    
+    //Pay quota
+    public void pagarQuota(Double value){
+        if(this.quotas.isEmpty())  this.quotas.put(LocalDate.now(),value);
+        else this.quotas.put(this.quotas.lastKey().plusMonths(1),value);
     }
 }
