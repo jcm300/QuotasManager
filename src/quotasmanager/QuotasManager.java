@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.Observable;
+import java.util.Iterator;
 
 public class QuotasManager extends Observable {
 
@@ -23,9 +24,20 @@ public class QuotasManager extends Observable {
     }
     
     public void pagarQuota(Integer numero, Double valor){
-        for(Aluno a: this.members.values()){
-            if(a.getNumber()==numero)  a.pagarQuota(valor);
+        Quota q = null;
+        Aluno aux;
+        boolean notFound=true;
+        
+        Iterator<Aluno> i = this.members.values().iterator();
+        while(i.hasNext() && notFound){
+            aux = i.next();
+            if(aux.getNumber()==numero) {
+                q = aux.pagarQuota(valor);
+                notFound = false;
+            }
         }
+        this.setChanged();
+        this.notifyObservers(q);
     }
     
     public Aluno getAluno(int num) throws AlunoNotFoundException{
@@ -35,7 +47,26 @@ public class QuotasManager extends Observable {
         throw new  AlunoNotFoundException();
     }
     
+    public Aluno getAlunoByName(String name) throws AlunoNotFoundException{
+        for(Aluno a: this.members.values()){
+            if(a.getName().equals(name)) return a.clone();
+        }
+        throw new  AlunoNotFoundException();
+    }
+    
     public void addAluno(Aluno a){
         this.members.put(a.getNumber(),a.clone());
+        this.setChanged();
+        this.notifyObservers(a);
+    }
+    
+    public void removeAluno(int number){
+        this.members.remove(number);
+        this.setChanged();
+        this.notifyObservers(number);
+    }
+    
+    public int size(){
+        return this.members.size();
     }
 }

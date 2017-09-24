@@ -4,12 +4,12 @@
 
 package quotasmanager;
 
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.TreeSet;
+import java.util.Set;
 import java.lang.StringBuilder;
 import java.time.LocalDate;
 
-public class Aluno  {
+public class Aluno implements Comparable<Aluno> {
     
     //instance variavels
     private String name;
@@ -17,7 +17,7 @@ public class Aluno  {
     private String course;
     private int year;
     private String adress;
-    private TreeMap<LocalDate,Double> quotas;
+    private TreeSet<Quota> quotas;
     
     //constructors
     public Aluno(){
@@ -26,18 +26,15 @@ public class Aluno  {
         this.course="";
         this.year=0;
         this.adress="";
-        this.quotas=new TreeMap<LocalDate,Double>();
+        this.quotas=new TreeSet<Quota>();
     }
-    public Aluno(String n, int num, String c, int y, String a, TreeMap<LocalDate,Double> q){
+    public Aluno(int num, String n, String c, int y, String a, TreeSet<Quota> q){
         this.name=n;
         this.number=num;
         this.course=c;
         this.year=y;
         this.adress=a;
-        this.quotas= new TreeMap<LocalDate,Double>();
-        for(Map.Entry<LocalDate,Double> d : q.entrySet()){
-            this.quotas.put(d.getKey(),d.getValue());
-        }
+        this.setQuotas(q);
     }
     
     //gets
@@ -56,10 +53,10 @@ public class Aluno  {
     public String getAdress() {
         return this.adress;
     }
-    public Map<LocalDate,Double> getQuotas() {
-        TreeMap<LocalDate,Double> r = new TreeMap<LocalDate,Double>();
-        for(Map.Entry<LocalDate,Double> d : this.quotas.entrySet()){
-            r.put(d.getKey(),d.getValue());
+    public TreeSet<Quota> getQuotas() {
+        TreeSet<Quota> r = new TreeSet<Quota>();
+        for(Quota d : this.quotas){
+            r.add(d.clone());
         }
         return r;
     }
@@ -80,16 +77,16 @@ public class Aluno  {
     public void setAdress(String a) {
         this.adress=a;
     }
-    public void setQuotas(TreeMap<LocalDate,Double> q) {
-        this.quotas = new TreeMap<LocalDate,Double>();
-        for(Map.Entry<LocalDate,Double> d : q.entrySet()){
-            this.quotas.put(d.getKey(),d.getValue());
+    public void setQuotas(TreeSet<Quota> q) {
+        this.quotas = new TreeSet<Quota>();
+        for(Quota d : q){
+            this.quotas.add(d.clone());
         }
     }
     
     //clone
     public Aluno clone(){
-        return new Aluno(this.name,this.number,this.course,this.year,this.adress,this.quotas);
+        return new Aluno(this.number,this.name,this.course,this.year,this.adress,this.quotas);
     }
     
     //equals
@@ -132,8 +129,11 @@ public class Aluno  {
     }
     
     //Pay quota
-    public void pagarQuota(Double value){
-        if(this.quotas.isEmpty())  this.quotas.put(LocalDate.now(),value);
-        else this.quotas.put(this.quotas.lastKey().plusMonths(1),value);
+    public Quota pagarQuota(Double value){
+        Quota q;
+        if(this.quotas.isEmpty())  q = new Quota(LocalDate.now(),value);
+        else q = new Quota(this.quotas.last().getDate().plusMonths(1),value);
+        this.quotas.add(q.clone());
+        return q;
     }
 }

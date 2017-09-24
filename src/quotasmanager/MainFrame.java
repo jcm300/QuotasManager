@@ -4,12 +4,25 @@
 
 package quotasmanager;
 
-public class MainFrame extends javax.swing.JFrame {
+import java.util.TreeSet;
+import java.time.LocalDate;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.stream.Stream;
 
+public class MainFrame extends javax.swing.JFrame implements Observer {
+
+    private QuotasManager man;
+    private javax.swing.table.DefaultTableModel alunosModel;
+    private javax.swing.table.DefaultTableModel quotasModel;
+    private int alunoSelected;
+    
     /**
      * Creates new form QuotasJFrame
      */
     public MainFrame() {
+        this.man = new QuotasManager();
+        this.man.addObserver(this);
         initComponents();
     }
 
@@ -22,38 +35,318 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NovoSocioFrame = new javax.swing.JFrame();
+        NumeroField = new javax.swing.JTextField();
+        NomeField = new javax.swing.JTextField();
+        CursoField = new javax.swing.JTextField();
+        AnoField = new javax.swing.JTextField();
+        MoradaField = new javax.swing.JTextField();
+        NumeroL = new javax.swing.JLabel("Número");
+        NomeL = new javax.swing.JLabel("Nome");
+        CursoL = new javax.swing.JLabel("Curso");
+        AnoL = new javax.swing.JLabel("Ano");
+        MoradaL = new javax.swing.JLabel("Morada");
+        Guardar = new javax.swing.JButton("Guardar");
+        Fechar = new javax.swing.JButton("Fechar");
+        SocioFrame = new javax.swing.JFrame();
+        NumeroLSF = new javax.swing.JLabel("Número");
+        NomeLSF = new javax.swing.JLabel("Nome");
+        CursoLSF = new javax.swing.JLabel("Curso");
+        AnoLSF = new javax.swing.JLabel("Ano");
+        MoradaLSF = new javax.swing.JLabel("Morada");
+        NumeroFieldSF = new javax.swing.JTextField();
+        NomeFieldSF = new javax.swing.JTextField();
+        CursoFieldSF = new javax.swing.JTextField();
+        AnoFieldSF = new javax.swing.JTextField();
+        MoradaFieldSF = new javax.swing.JTextField();
+        QuotasPagas = new javax.swing.JButton("Quotas Pagas");
+        Atualizar = new javax.swing.JButton("Atualizar");
+        FecharSF = new javax.swing.JButton("Fechar");
+        QuotasPagasFrame = new javax.swing.JFrame();
         jScrollPane = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        quotasTable = new javax.swing.JTable();
+        PagarQuotas = new javax.swing.JButton("Pagar Quota");
+        Ok = new javax.swing.JButton("Ok");
+        valorDialog = new javax.swing.JDialog();
+        valorL = new javax.swing.JLabel("Valor da Quota:");
+        valorField = new javax.swing.JTextField();
+        OkValor = new javax.swing.JButton("Ok");
+        alunosScrollPane = new javax.swing.JScrollPane();
+        AlunosTable = new javax.swing.JTable();
         MenuBar = new javax.swing.JMenuBar();
-        AdicionarNovoSocio = new javax.swing.JMenu("Adicionar Novo Sócio");
+        Add = new javax.swing.JMenu("Add");
+        AddNovoSocio = new javax.swing.JMenuItem("Adicionar Novo Sócio");
+
+        NovoSocioFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+
+        Fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FecharActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout NovoSocioFrameLayout = new javax.swing.GroupLayout(NovoSocioFrame.getContentPane());
+        NovoSocioFrame.getContentPane().setLayout(NovoSocioFrameLayout);
+        NovoSocioFrameLayout.setHorizontalGroup(
+            NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NovoSocioFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(NovoSocioFrameLayout.createSequentialGroup()
+                        .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(AnoL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CursoL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MoradaL, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CursoField)
+                            .addComponent(AnoField)
+                            .addComponent(MoradaField)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NovoSocioFrameLayout.createSequentialGroup()
+                        .addGap(0, 211, Short.MAX_VALUE)
+                        .addComponent(Guardar)
+                        .addGap(43, 43, 43)
+                        .addComponent(Fechar))
+                    .addGroup(NovoSocioFrameLayout.createSequentialGroup()
+                        .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NumeroL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NomeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NomeField)
+                            .addComponent(NumeroField))))
+                .addContainerGap())
+        );
+        NovoSocioFrameLayout.setVerticalGroup(
+            NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NovoSocioFrameLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NumeroL, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NumeroField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CursoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CursoL, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AnoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AnoL, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MoradaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MoradaL, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(NovoSocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Guardar)
+                    .addComponent(Fechar))
+                .addContainerGap())
+        );
+
+        SocioFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        QuotasPagas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuotasPagasActionPerformed(evt);
+            }
+        });
+
+        Atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarActionPerformed(evt);
+            }
+        });
+
+        FecharSF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FecharSFActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SocioFrameLayout = new javax.swing.GroupLayout(SocioFrame.getContentPane());
+        SocioFrame.getContentPane().setLayout(SocioFrameLayout);
+        SocioFrameLayout.setHorizontalGroup(
+            SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SocioFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SocioFrameLayout.createSequentialGroup()
+                        .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(AnoLSF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CursoLSF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MoradaLSF, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CursoFieldSF)
+                            .addComponent(AnoFieldSF)
+                            .addComponent(MoradaFieldSF)))
+                    .addGroup(SocioFrameLayout.createSequentialGroup()
+                        .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NumeroLSF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NomeLSF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NomeFieldSF)
+                            .addComponent(NumeroFieldSF)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SocioFrameLayout.createSequentialGroup()
+                        .addGap(0, 195, Short.MAX_VALUE)
+                        .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SocioFrameLayout.createSequentialGroup()
+                                .addComponent(Atualizar)
+                                .addGap(43, 43, 43)
+                                .addComponent(FecharSF))
+                            .addComponent(QuotasPagas, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        SocioFrameLayout.setVerticalGroup(
+            SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SocioFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(QuotasPagas)
+                .addGap(19, 19, 19)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NumeroLSF, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NumeroFieldSF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NomeFieldSF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NomeLSF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CursoFieldSF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CursoLSF, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AnoFieldSF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AnoLSF, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MoradaFieldSF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MoradaLSF, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(SocioFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Atualizar)
+                    .addComponent(FecharSF))
+                .addContainerGap())
+        );
+
+        QuotasPagasFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        quotasModel = new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {"Mês", "Valor"}){
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        quotasTable.setModel(quotasModel
+        );
+        jScrollPane.setViewportView(quotasTable);
+
+        PagarQuotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PagarQuotasActionPerformed(evt);
+            }
+        });
+
+        Ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout QuotasPagasFrameLayout = new javax.swing.GroupLayout(QuotasPagasFrame.getContentPane());
+        QuotasPagasFrame.getContentPane().setLayout(QuotasPagasFrameLayout);
+        QuotasPagasFrameLayout.setHorizontalGroup(
+            QuotasPagasFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(QuotasPagasFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
+                        .addComponent(PagarQuotas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        QuotasPagasFrameLayout.setVerticalGroup(
+            QuotasPagasFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(QuotasPagasFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PagarQuotas)
+                    .addComponent(Ok))
+                .addContainerGap())
+        );
+
+        OkValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkValorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout valorDialogLayout = new javax.swing.GroupLayout(valorDialog.getContentPane());
+        valorDialog.getContentPane().setLayout(valorDialogLayout);
+        valorDialogLayout.setHorizontalGroup(
+            valorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(valorL, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+            .addGroup(valorDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(valorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valorField)
+                    .addGroup(valorDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OkValor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        valorDialogLayout.setVerticalGroup(
+            valorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(valorDialogLayout.createSequentialGroup()
+                .addComponent(valorL, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valorField, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(OkValor)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Número", "Nome"
+        alunosModel = new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {"Número", "Aluno"}){
+            public boolean isCellEditable(int row, int column){
+                return false;
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        };
+        AlunosTable.setModel(alunosModel
+        );
+        AlunosTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlunosTableMouseClicked(evt);
             }
         });
-        jScrollPane.setViewportView(jTable1);
+        alunosScrollPane.setViewportView(AlunosTable);
 
-        AdicionarNovoSocio.addActionListener(new java.awt.event.ActionListener() {
+        AddNovoSocio.setPreferredSize(null);
+        AddNovoSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdicionarNovoSocioActionPerformed(evt);
+                AddNovoSocioActionPerformed(evt);
             }
         });
-        MenuBar.add(AdicionarNovoSocio);
-        AdicionarNovoSocio.getAccessibleContext().setAccessibleDescription("");
+        Add.add(AddNovoSocio);
+
+        MenuBar.add(Add);
 
         setJMenuBar(MenuBar);
 
@@ -61,19 +354,89 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addComponent(alunosScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+            .addComponent(alunosScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AdicionarNovoSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarNovoSocioActionPerformed
-        new NovoSocioFrame().setVisible(true);
-    }//GEN-LAST:event_AdicionarNovoSocioActionPerformed
+    private void AddNovoSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNovoSocioActionPerformed
+        NumeroField.setText("");
+        NomeField.setText("");
+        CursoField.setText("");
+        AnoField.setText("");
+        MoradaField.setText("");
+        NovoSocioFrame.setVisible(true);
+    }//GEN-LAST:event_AddNovoSocioActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        int n = Integer.parseInt(NumeroField.getText());
+        if(this.man.getAlunos().values().isEmpty() || !this.man.getAlunos().values().stream().anyMatch(a -> a.getNumber()==n)){
+            this.man.addAluno(new Aluno(n, NomeField.getText(), CursoField.getText(), Integer.parseInt(AnoField.getText()), MoradaField.getText(), new TreeSet<Quota>()));
+        }else{
+            //TODO: send a error message
+        }
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharActionPerformed
+        NovoSocioFrame.setVisible(false);
+    }//GEN-LAST:event_FecharActionPerformed
+
+    private void AlunosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlunosTableMouseClicked
+        int row = AlunosTable.rowAtPoint(evt.getPoint());
+        int col = AlunosTable.columnAtPoint(evt.getPoint());
+        if (row >=0 && col == 1) {
+            String name = (String)alunosModel.getValueAt(row, col);
+            try{
+                Aluno a = this.man.getAlunoByName(name);
+                this.alunoSelected = a.getNumber();
+                NumeroFieldSF.setText(Integer.toString(this.alunoSelected));
+                NomeFieldSF.setText(name);
+                AnoFieldSF.setText(Integer.toString(a.getYear()));
+                CursoFieldSF.setText(a.getCourse());
+                MoradaFieldSF.setText(a.getAdress());
+                SocioFrame.setVisible(true);
+            }catch(AlunoNotFoundException e) {}
+        }
+    }//GEN-LAST:event_AlunosTableMouseClicked
+
+    private void FecharSFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharSFActionPerformed
+        SocioFrame.setVisible(false);
+    }//GEN-LAST:event_FecharSFActionPerformed
+
+    private void AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarActionPerformed
+        try{
+            TreeSet<Quota> q = this.man.getAluno(this.alunoSelected).getQuotas();
+            int n = Integer.parseInt(NumeroFieldSF.getText());
+            if(!this.man.getAlunos().values().stream().anyMatch(a -> a.getNumber()==n) || n==this.alunoSelected ) {
+                this.man.removeAluno(this.alunoSelected);
+                this.man.addAluno(new Aluno(n, NomeFieldSF.getText(), CursoFieldSF.getText(), Integer.parseInt(AnoFieldSF.getText()), MoradaFieldSF.getText(), q));
+                this.alunoSelected=n;
+            }
+       }catch(AlunoNotFoundException e){}
+    }//GEN-LAST:event_AtualizarActionPerformed
+
+    private void QuotasPagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuotasPagasActionPerformed
+        QuotasPagasFrame.setVisible(true);
+    }//GEN-LAST:event_QuotasPagasActionPerformed
+
+    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
+        QuotasPagasFrame.setVisible(false);
+    }//GEN-LAST:event_OkActionPerformed
+
+    private void PagarQuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarQuotasActionPerformed
+        valorDialog.setVisible(true);
+    }//GEN-LAST:event_PagarQuotasActionPerformed
+
+    private void OkValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkValorActionPerformed
+        this.man.pagarQuota(this.alunoSelected,Double.parseDouble(valorField.getText()));
+        valorDialog.setVisible(false);
+        valorField.setText("");
+    }//GEN-LAST:event_OkValorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,9 +446,60 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu AdicionarNovoSocio;
+    private javax.swing.JMenu Add;
+    private javax.swing.JMenuItem AddNovoSocio;
+    private javax.swing.JTable AlunosTable;
+    private javax.swing.JTextField AnoField;
+    private javax.swing.JTextField AnoFieldSF;
+    private javax.swing.JLabel AnoL;
+    private javax.swing.JLabel AnoLSF;
+    private javax.swing.JButton Atualizar;
+    private javax.swing.JTextField CursoField;
+    private javax.swing.JTextField CursoFieldSF;
+    private javax.swing.JLabel CursoL;
+    private javax.swing.JLabel CursoLSF;
+    private javax.swing.JButton Fechar;
+    private javax.swing.JButton FecharSF;
+    private javax.swing.JButton Guardar;
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JTextField MoradaField;
+    private javax.swing.JTextField MoradaFieldSF;
+    private javax.swing.JLabel MoradaL;
+    private javax.swing.JLabel MoradaLSF;
+    private javax.swing.JTextField NomeField;
+    private javax.swing.JTextField NomeFieldSF;
+    private javax.swing.JLabel NomeL;
+    private javax.swing.JLabel NomeLSF;
+    private javax.swing.JFrame NovoSocioFrame;
+    private javax.swing.JTextField NumeroField;
+    private javax.swing.JTextField NumeroFieldSF;
+    private javax.swing.JLabel NumeroL;
+    private javax.swing.JLabel NumeroLSF;
+    private javax.swing.JButton Ok;
+    private javax.swing.JButton OkValor;
+    private javax.swing.JButton PagarQuotas;
+    private javax.swing.JButton QuotasPagas;
+    private javax.swing.JFrame QuotasPagasFrame;
+    private javax.swing.JFrame SocioFrame;
+    private javax.swing.JScrollPane alunosScrollPane;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable quotasTable;
+    private javax.swing.JDialog valorDialog;
+    private javax.swing.JTextField valorField;
+    private javax.swing.JLabel valorL;
     // End of variables declaration//GEN-END:variables
+
+    public void update(Observable o, Object arg) {
+        if(arg.getClass().getSimpleName().equals("Integer")){
+            for(int i=0; i<alunosModel.getRowCount();i++){
+                if((int)arg == (int)alunosModel.getValueAt(i, 0)) alunosModel.removeRow(i);
+            }
+        }else if(arg.getClass().getSimpleName().equals("Aluno")){
+            Aluno a = (Aluno)arg;
+            this.alunosModel.addRow(new Object[ ]{a.getNumber(),a.getName()});
+        }else if(arg.getClass().getSimpleName().equals("Quota")){
+            Quota q = (Quota)arg;
+            quotasModel.addRow(new Object[]{q.getDate(),q.getValue()});
+        }
+    }
 }
