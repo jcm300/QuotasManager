@@ -1,5 +1,5 @@
 /**
- * @author jcm300
+ * @author José Martins
  */
 
 package quotasmanager;

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.stream.Stream;
+import javax.swing.JFrame;
 
 public class MainFrame extends javax.swing.JFrame implements Observer {
 
@@ -71,11 +72,22 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         valorL = new javax.swing.JLabel("Valor da Quota:");
         valorField = new javax.swing.JTextField();
         OkValor = new javax.swing.JButton("Ok");
+        WrongInput = new javax.swing.JDialog();
+        OkWInput = new javax.swing.JToggleButton("OK");
+        WInputL = new javax.swing.JLabel("<html>Input errado em Número e/ou Ano.<br> Por favor, corrija.</html>");
+        WrongValue = new javax.swing.JDialog();
+        OkWValue = new javax.swing.JToggleButton("OK");
+        WValueL = new javax.swing.JLabel("<html>Coloque um valor correto.<br> Use . e não , para as casas decimais.</html>");
+        AlunoExist = new javax.swing.JDialog();
+        OkAlunoE = new javax.swing.JToggleButton("OK");
+        AlunoEL = new javax.swing.JLabel("Já existe um aluno com esse número.");
         alunosScrollPane = new javax.swing.JScrollPane();
         AlunosTable = new javax.swing.JTable();
         MenuBar = new javax.swing.JMenuBar();
         Add = new javax.swing.JMenu("Add");
         AddNovoSocio = new javax.swing.JMenuItem("Adicionar Novo Sócio");
+        More = new javax.swing.JMenu("More");
+        Close = new javax.swing.JMenuItem("Close");
 
         NovoSocioFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -322,6 +334,93 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        OkWInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkWInputActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout WrongInputLayout = new javax.swing.GroupLayout(WrongInput.getContentPane());
+        WrongInput.getContentPane().setLayout(WrongInputLayout);
+        WrongInputLayout.setHorizontalGroup(
+            WrongInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongInputLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(OkWInput, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101))
+            .addGroup(WrongInputLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WInputL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        WrongInputLayout.setVerticalGroup(
+            WrongInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongInputLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WInputL, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(OkWInput)
+                .addGap(18, 18, 18))
+        );
+
+        OkWValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkWValueActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout WrongValueLayout = new javax.swing.GroupLayout(WrongValue.getContentPane());
+        WrongValue.getContentPane().setLayout(WrongValueLayout);
+        WrongValueLayout.setHorizontalGroup(
+            WrongValueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WrongValueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WValueL)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongValueLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(OkWValue, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
+        );
+        WrongValueLayout.setVerticalGroup(
+            WrongValueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongValueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WValueL, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OkWValue)
+                .addGap(24, 24, 24))
+        );
+
+        OkAlunoE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkAlunoEActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AlunoExistLayout = new javax.swing.GroupLayout(AlunoExist.getContentPane());
+        AlunoExist.getContentPane().setLayout(AlunoExistLayout);
+        AlunoExistLayout.setHorizontalGroup(
+            AlunoExistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AlunoExistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AlunoEL)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlunoExistLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(OkAlunoE, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+        AlunoExistLayout.setVerticalGroup(
+            AlunoExistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlunoExistLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AlunoEL, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OkAlunoE)
+                .addGap(24, 24, 24))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         alunosModel = new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {"Número", "Aluno"}){
@@ -347,6 +446,15 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         Add.add(AddNovoSocio);
 
         MenuBar.add(Add);
+
+        Close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseActionPerformed(evt);
+            }
+        });
+        More.add(Close);
+
+        MenuBar.add(More);
 
         setJMenuBar(MenuBar);
 
@@ -374,11 +482,15 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_AddNovoSocioActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        int n = Integer.parseInt(NumeroField.getText());
-        if(this.man.getAlunos().values().isEmpty() || !this.man.getAlunos().values().stream().anyMatch(a -> a.getNumber()==n)){
-            this.man.addAluno(new Aluno(n, NomeField.getText(), CursoField.getText(), Integer.parseInt(AnoField.getText()), MoradaField.getText(), new TreeSet<Quota>()));
-        }else{
-            //TODO: send a error message
+       try{
+            int n = Integer.parseInt(NumeroField.getText());
+            if(this.man.getAlunos().values().isEmpty() || !this.man.getAlunos().values().stream().anyMatch(a -> a.getNumber()==n)){
+                this.man.addAluno(new Aluno(n, NomeField.getText(), CursoField.getText(), Integer.parseInt(AnoField.getText()), MoradaField.getText(), new TreeSet<Quota>()));
+            }else{
+                AlunoExist.setVisible(true);
+            }
+        }catch(NumberFormatException e){
+                WrongInput.setVisible(true);
         }
     }//GEN-LAST:event_GuardarActionPerformed
 
@@ -416,8 +528,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 this.man.removeAluno(this.alunoSelected);
                 this.man.addAluno(new Aluno(n, NomeFieldSF.getText(), CursoFieldSF.getText(), Integer.parseInt(AnoFieldSF.getText()), MoradaFieldSF.getText(), q));
                 this.alunoSelected=n;
+            }else{
+                AlunoExist.setVisible(true);
             }
-       }catch(AlunoNotFoundException e){}
+        }catch(AlunoNotFoundException e){
+        }catch(NumberFormatException e){
+             WrongInput.setVisible(true);
+        }
     }//GEN-LAST:event_AtualizarActionPerformed
 
     private void QuotasPagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuotasPagasActionPerformed
@@ -433,63 +550,32 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_PagarQuotasActionPerformed
 
     private void OkValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkValorActionPerformed
-        this.man.pagarQuota(this.alunoSelected,Double.parseDouble(valorField.getText()));
-        valorDialog.setVisible(false);
-        valorField.setText("");
+        try{
+            this.man.pagarQuota(this.alunoSelected,Double.parseDouble(valorField.getText()));
+            valorDialog.setVisible(false);
+            valorField.setText("");
+        }catch(NumberFormatException e){
+                WrongValue.setVisible(true);
+        }
     }//GEN-LAST:event_OkValorActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        new MainFrame().setVisible(true);
-    }
+    private void OkWInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkWInputActionPerformed
+        WrongInput.setVisible(false);
+    }//GEN-LAST:event_OkWInputActionPerformed
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Add;
-    private javax.swing.JMenuItem AddNovoSocio;
-    private javax.swing.JTable AlunosTable;
-    private javax.swing.JTextField AnoField;
-    private javax.swing.JTextField AnoFieldSF;
-    private javax.swing.JLabel AnoL;
-    private javax.swing.JLabel AnoLSF;
-    private javax.swing.JButton Atualizar;
-    private javax.swing.JTextField CursoField;
-    private javax.swing.JTextField CursoFieldSF;
-    private javax.swing.JLabel CursoL;
-    private javax.swing.JLabel CursoLSF;
-    private javax.swing.JButton Fechar;
-    private javax.swing.JButton FecharSF;
-    private javax.swing.JButton Guardar;
-    private javax.swing.JMenuBar MenuBar;
-    private javax.swing.JTextField MoradaField;
-    private javax.swing.JTextField MoradaFieldSF;
-    private javax.swing.JLabel MoradaL;
-    private javax.swing.JLabel MoradaLSF;
-    private javax.swing.JTextField NomeField;
-    private javax.swing.JTextField NomeFieldSF;
-    private javax.swing.JLabel NomeL;
-    private javax.swing.JLabel NomeLSF;
-    private javax.swing.JFrame NovoSocioFrame;
-    private javax.swing.JTextField NumeroField;
-    private javax.swing.JTextField NumeroFieldSF;
-    private javax.swing.JLabel NumeroL;
-    private javax.swing.JLabel NumeroLSF;
-    private javax.swing.JButton Ok;
-    private javax.swing.JButton OkValor;
-    private javax.swing.JButton PagarQuotas;
-    private javax.swing.JButton QuotasPagas;
-    private javax.swing.JFrame QuotasPagasFrame;
-    private javax.swing.JFrame SocioFrame;
-    private javax.swing.JScrollPane alunosScrollPane;
-    private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JTable quotasTable;
-    private javax.swing.JDialog valorDialog;
-    private javax.swing.JTextField valorField;
-    private javax.swing.JLabel valorL;
-    // End of variables declaration//GEN-END:variables
+    private void OkWValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkWValueActionPerformed
+        WrongValue.setVisible(false);
+    }//GEN-LAST:event_OkWValueActionPerformed
 
-    public void update(Observable o, Object arg) {
+    private void OkAlunoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkAlunoEActionPerformed
+        AlunoExist.setVisible(false);
+    }//GEN-LAST:event_OkAlunoEActionPerformed
+
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_CloseActionPerformed
+
+public void update(Observable o, Object arg) {
         if(arg.getClass().getSimpleName().equals("Integer")){
             for(int i=0; i<alunosModel.getRowCount();i++){
                 if((int)arg == (int)alunosModel.getValueAt(i, 0)) alunosModel.removeRow(i);
@@ -502,4 +588,66 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             quotasModel.addRow(new Object[]{q.getDate(),q.getValue()});
         }
     }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        new MainFrame().setVisible(true);
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Add;
+    private javax.swing.JMenuItem AddNovoSocio;
+    private javax.swing.JLabel AlunoEL;
+    private javax.swing.JDialog AlunoExist;
+    private javax.swing.JTable AlunosTable;
+    private javax.swing.JTextField AnoField;
+    private javax.swing.JTextField AnoFieldSF;
+    private javax.swing.JLabel AnoL;
+    private javax.swing.JLabel AnoLSF;
+    private javax.swing.JButton Atualizar;
+    private javax.swing.JMenuItem Close;
+    private javax.swing.JTextField CursoField;
+    private javax.swing.JTextField CursoFieldSF;
+    private javax.swing.JLabel CursoL;
+    private javax.swing.JLabel CursoLSF;
+    private javax.swing.JButton Fechar;
+    private javax.swing.JButton FecharSF;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JTextField MoradaField;
+    private javax.swing.JTextField MoradaFieldSF;
+    private javax.swing.JLabel MoradaL;
+    private javax.swing.JLabel MoradaLSF;
+    private javax.swing.JMenu More;
+    private javax.swing.JTextField NomeField;
+    private javax.swing.JTextField NomeFieldSF;
+    private javax.swing.JLabel NomeL;
+    private javax.swing.JLabel NomeLSF;
+    private javax.swing.JFrame NovoSocioFrame;
+    private javax.swing.JTextField NumeroField;
+    private javax.swing.JTextField NumeroFieldSF;
+    private javax.swing.JLabel NumeroL;
+    private javax.swing.JLabel NumeroLSF;
+    private javax.swing.JButton Ok;
+    private javax.swing.JToggleButton OkAlunoE;
+    private javax.swing.JButton OkValor;
+    private javax.swing.JToggleButton OkWInput;
+    private javax.swing.JToggleButton OkWValue;
+    private javax.swing.JButton PagarQuotas;
+    private javax.swing.JButton QuotasPagas;
+    private javax.swing.JFrame QuotasPagasFrame;
+    private javax.swing.JFrame SocioFrame;
+    private javax.swing.JLabel WInputL;
+    private javax.swing.JLabel WValueL;
+    private javax.swing.JDialog WrongInput;
+    private javax.swing.JDialog WrongValue;
+    private javax.swing.JScrollPane alunosScrollPane;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTable quotasTable;
+    private javax.swing.JDialog valorDialog;
+    private javax.swing.JTextField valorField;
+    private javax.swing.JLabel valorL;
+    // End of variables declaration//GEN-END:variables
 }
