@@ -90,13 +90,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         Close = new javax.swing.JMenuItem("Close");
 
         NovoSocioFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        NovoSocioFrame.setLocationByPlatform(true);
+        NovoSocioFrame.setMinimumSize(new java.awt.Dimension(600, 400));
 
+        NumeroL.setText("Número");
+
+        NomeL.setText("Nome");
+
+        CursoL.setText("Curso");
+
+        AnoL.setText("Ano");
+
+        MoradaL.setText("Morada");
+
+        Guardar.setText("Guardar");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
             }
         });
 
+        Fechar.setText("Fechar");
         Fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FecharActionPerformed(evt);
@@ -166,19 +180,34 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         );
 
         SocioFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        SocioFrame.setLocationByPlatform(true);
+        SocioFrame.setMinimumSize(new java.awt.Dimension(600, 400));
 
+        NumeroLSF.setText("Número");
+
+        NomeLSF.setText("Nome");
+
+        CursoLSF.setText("Curso");
+
+        AnoLSF.setText("Ano");
+
+        MoradaLSF.setText("Morada");
+
+        QuotasPagas.setText("Quotas Pagas");
         QuotasPagas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QuotasPagasActionPerformed(evt);
             }
         });
 
+        Atualizar.setText("Atualizar");
         Atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtualizarActionPerformed(evt);
             }
         });
 
+        FecharSF.setText("Fechar");
         FecharSF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FecharSFActionPerformed(evt);
@@ -253,6 +282,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         );
 
         QuotasPagasFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        QuotasPagasFrame.setLocationByPlatform(true);
+        QuotasPagasFrame.setMinimumSize(new java.awt.Dimension(375, 500));
 
         quotasModel = new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {"Mês", "Valor"}){
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -263,12 +294,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         );
         jScrollPane.setViewportView(quotasTable);
 
+        PagarQuotas.setText("Pagar Quota");
         PagarQuotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PagarQuotasActionPerformed(evt);
             }
         });
 
+        Ok.setText("Ok");
         Ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkActionPerformed(evt);
@@ -283,12 +316,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(QuotasPagasFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(QuotasPagasFrameLayout.createSequentialGroup()
                         .addComponent(PagarQuotas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
                 .addContainerGap())
         );
         QuotasPagasFrameLayout.setVerticalGroup(
@@ -303,6 +334,12 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addContainerGap())
         );
 
+        valorDialog.setLocationByPlatform(true);
+        valorDialog.setMinimumSize(new java.awt.Dimension(300, 175));
+
+        valorL.setText("Valor da Quota:");
+
+        OkValor.setText("Ok");
         OkValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkValorActionPerformed(evt);
@@ -334,21 +371,27 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        WrongInput.setLocationByPlatform(true);
+        WrongInput.setMinimumSize(new java.awt.Dimension(300, 150));
+
+        OkWInput.setText("OK");
         OkWInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkWInputActionPerformed(evt);
             }
         });
 
+        WInputL.setText("<html>Input errado em Número e/ou Ano.<br> Por favor, corrija.</html>");
+
         javax.swing.GroupLayout WrongInputLayout = new javax.swing.GroupLayout(WrongInput.getContentPane());
         WrongInput.getContentPane().setLayout(WrongInputLayout);
         WrongInputLayout.setHorizontalGroup(
             WrongInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongInputLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OkWInput, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
             .addGroup(WrongInputLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(OkWInput, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongInputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(WInputL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -357,46 +400,58 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             WrongInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongInputLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(WInputL, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(WInputL, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(OkWInput)
                 .addGap(18, 18, 18))
         );
 
+        WrongValue.setLocationByPlatform(true);
+        WrongValue.setMinimumSize(new java.awt.Dimension(300, 150));
+
+        OkWValue.setText("OK");
         OkWValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkWValueActionPerformed(evt);
             }
         });
 
+        WValueL.setText("<html>Coloque um valor correto.<br> Use . e não , para as casas decimais.</html>");
+
         javax.swing.GroupLayout WrongValueLayout = new javax.swing.GroupLayout(WrongValue.getContentPane());
         WrongValue.getContentPane().setLayout(WrongValueLayout);
         WrongValueLayout.setHorizontalGroup(
             WrongValueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongValueLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(OkWValue, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
             .addGroup(WrongValueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(WValueL)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongValueLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OkWValue, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
+                .addComponent(WValueL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         WrongValueLayout.setVerticalGroup(
             WrongValueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WrongValueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(WValueL, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(WValueL, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OkWValue)
-                .addGap(24, 24, 24))
+                .addGap(20, 20, 20))
         );
 
+        AlunoExist.setLocationByPlatform(true);
+        AlunoExist.setMinimumSize(new java.awt.Dimension(300, 150));
+
+        OkAlunoE.setText("OK");
         OkAlunoE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkAlunoEActionPerformed(evt);
             }
         });
+
+        AlunoEL.setText("Já existe um aluno com esse número.");
 
         javax.swing.GroupLayout AlunoExistLayout = new javax.swing.GroupLayout(AlunoExist.getContentPane());
         AlunoExist.getContentPane().setLayout(AlunoExistLayout);
@@ -409,19 +464,20 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlunoExistLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(OkAlunoE, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(50, 50, 50))
         );
         AlunoExistLayout.setVerticalGroup(
             AlunoExistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlunoExistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AlunoEL, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(OkAlunoE)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         alunosModel = new javax.swing.table.DefaultTableModel(new Object [][] {},new String [] {"Número", "Aluno"}){
             public boolean isCellEditable(int row, int column){
@@ -437,7 +493,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         });
         alunosScrollPane.setViewportView(AlunosTable);
 
-        AddNovoSocio.setPreferredSize(null);
+        Add.setText("Add");
+
+        AddNovoSocio.setText("Adicionar Novo Sócio");
         AddNovoSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddNovoSocioActionPerformed(evt);
@@ -447,6 +505,9 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         MenuBar.add(Add);
 
+        More.setText("More");
+
+        Close.setText("Close");
         Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CloseActionPerformed(evt);
@@ -470,6 +531,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddNovoSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNovoSocioActionPerformed
@@ -541,14 +603,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         QuotasPagasFrame.setVisible(true);
     }//GEN-LAST:event_QuotasPagasActionPerformed
 
-    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
-        QuotasPagasFrame.setVisible(false);
-    }//GEN-LAST:event_OkActionPerformed
-
-    private void PagarQuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarQuotasActionPerformed
-        valorDialog.setVisible(true);
-    }//GEN-LAST:event_PagarQuotasActionPerformed
-
     private void OkValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkValorActionPerformed
         try{
             this.man.pagarQuota(this.alunoSelected,Double.parseDouble(valorField.getText()));
@@ -567,13 +621,21 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         WrongValue.setVisible(false);
     }//GEN-LAST:event_OkWValueActionPerformed
 
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_CloseActionPerformed
+
     private void OkAlunoEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkAlunoEActionPerformed
         AlunoExist.setVisible(false);
     }//GEN-LAST:event_OkAlunoEActionPerformed
 
-    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_CloseActionPerformed
+    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
+        QuotasPagasFrame.setVisible(false);
+    }//GEN-LAST:event_OkActionPerformed
+
+    private void PagarQuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarQuotasActionPerformed
+        valorDialog.setVisible(true);
+    }//GEN-LAST:event_PagarQuotasActionPerformed
 
 public void update(Observable o, Object arg) {
         if(arg.getClass().getSimpleName().equals("Integer")){
